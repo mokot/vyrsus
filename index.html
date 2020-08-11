@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>VYRSUS</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <link href="knjiznice/css/style.css" rel="stylesheet">
+  <style>
+    body {padding-top: 70px;}
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+  <script src="knjiznice/js/Chart.js"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="navigationBar">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html"><img src="knjiznice/slike/virus.png" style="height:27px; width: auto; display:inline-flex;"/>VYRSUS</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+          <li><a href="bolnisnice.html">Bližnje bolnišnice</a></li>
+          <li id="generirajPodatkeGumb"><a href="#">Generiranje podatkov</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Vsebina aplikacije -->
+  <div class="page-header text-center" style="margin-top: 1em;"><img class="rounded mx-auto d-block" src="knjiznice/slike/virus.png" style="height:9em; width: auto; display:inline-flex;"/><span class="lead" style="opacity: 0.95; margin-left: 0.5em; font-size: 3.5em;">VYRSUS</span></div>
+  <div class="container">
+      <div id="navodilaZaUporabo" class="row text-center" style="margin-bottom: 1.5em;">
+          <div class="col-lg-1 col-md-1 col-sm-1"></div>
+          <div class="col-lg-10 col-md-10 col-sm-10"><img src="knjiznice/slike/dodatneInformacije.png" style="margin-right: 5px; height:23px; width: auto; display:inline-flex;"/><strong>Navodila za uporabo: </strong><br> <img src="knjiznice/slike/virus.png" style="height:23px; width: auto; display:inline-flex;"/> VYRSUS (versus virus) je spletna aplikacija, ki je v grobem razdeljena na dve glavni funkcionalnosti, in sicer na analizo podatkov uporabnika z izpisom verjetnosti okužbe
+              <img src="knjiznice/slike/ikona.png" style="height:23px; width: auto; display:inline-flex;"/>  ter na prikazovanje bolnišnic v bližini <img src="knjiznice/slike/zemljevid.png" style="height:23px; width: auto; display:inline-flex;"/>. Na samem začetku aplikacija omogoča izbiro med uporabnikom <img src="knjiznice/slike/uporabnik.svg" style="height:23px; width: auto; display:inline-flex;"/> in testnimi primeri
+              <img src="knjiznice/slike/testniUporabnik.png" style="height:23px; width: auto; display:inline-flex;"/>. Namen testnih primerov je ponazoritev delovanja aplikacije, katere <strong>glavna naloga </strong>je, da na podlagi pridobljenih podatkov in preprostega algoritma izračuna, kolikšna je verjetnost, da je (galaktična) oseba okužena s COVID-19 <img src="knjiznice/slike/koronaVirus.png" style="height:23px; width: auto; display:inline-flex;"/>.
+              Na podlagi izračunanih rezultatov aplikacija nato uporabnika razvrsti v eno izmed treh skupin. Prva skupina <img src="knjiznice/slike/zelenaIkona.png" style="height:23px; width: auto; display:inline-flex;"/> je skupina, ki naj ne bi bila okužena z virusom in posledično ne ogroža družbe (vsaj kar se tiče širjenaj virusa), druga skupina <img src="knjiznice/slike/rumenaIkona.png" style="height:23px; width: auto; display:inline-flex;"/>
+              je skupina, ki je po oceni aplikacije morda okužena z virusom, posledično, je za osebe v tej skupini priporočljiva izolacija zaradi morebitne preprečitve virusa. Tretja skupina <img src="knjiznice/slike/rdecaIkona.png" style="height:23px; width: auto; display:inline-flex;"/> je skupina, ki naj bi bila skoraj zagotovo okužena z virusom. Osebam, ki pripadajo tej skupini, je priporočen najavljen obisk zdravnika
+              (prikaz najbližje bolnišnice <img src="knjiznice/slike/bolnica.png" style="height:23px; width: auto; display:inline-flex;"/> in izpis njenih podatkov) in izogibanje vsekakršni družbi. V primeru, da se uporabnik aplikacije odloči za izbiro pregleda testnih primerov, lahko izbira med primeri, ki predstavljajo vsako zgoraj navedeno skupino. Testni primerki so Arthur Dent <img src="knjiznice/slike/ArthurDent.png" style="height:23px; width: auto; display:inline-flex;"/> (predstavnik prve skupina),
+              Ford Prefect <img src="knjiznice/slike/FordPerfect.svg" style="height:23px; width: auto; display:inline-flex;"/> (predstavnik druge skupine) ter Zaphood Beeblebrox <img src="knjiznice/slike/ZaphodBeeblebrox.png" style="height:23px; width: auto; display:inline-flex;"/> (predstavnik tretje skupine). Če pa se uprabnik aplikacije odloči
+              za delo z uporabnikom, si mora najprej ustvariti EHR ID <img src="knjiznice/slike/kreirajEHR.svg" style="height:23px; width: auto; display:inline-flex;"/> in nato nadaljuje z (priporočenim) dnevnim vnašanjem vitalnih znakov <img src="knjiznice/slike/vnosVitalnihZnakov.svg" style="height:23px; width: auto; display:inline-flex;"/> (<img src="knjiznice/slike/ura.png" style="height:23px; width: auto; display:inline-flex;"/> omogoča vnos časa). Za vsak vnos znakov aplikacija izračuna, kolikšna je verjetnost, da je uporabnik okužen.
+              V kolikor je to v interesu uporabnika, mu aplikacija ponuja tudi možnost izpisa vseh vnešenih podatokv <img src="knjiznice/slike/pregledMeritev.svg" style="height:23px; width: auto; display:inline-flex;"/> ter grafinčnega prikaza
+              teh podatkov <img src="knjiznice/slike/prikazPodatkov.png" style="height:23px; width: auto; display:inline-flex;"/>. Na podlagi pridobljenih informacij, lahko uporabnik preceni, ali je njegovo zdravstveno stanje primerno za družbo z drugimi (galaktičnimi) osebki, stvori ter organizmi, za katere še sam ni niti slišal. Spodnje slike
+              <img src="knjiznice/slike/opravljeniTesti.png" style="height:23px; width: auto; display:inline-flex;"/>, <img src="knjiznice/slike/potrjenoOkuzeni.png" style="height:23px; width: auto; display:inline-flex;"/>, <img src="knjiznice/slike/preboleli.png" style="height:23px; width: auto; display:inline-flex;"/> in
+              <img src="knjiznice/slike/umrli.png" style="height:23px; width: auto; display:inline-flex;"/> prikazujejo statistične podatke o virusu COVID-19 za Slovenijo. Več informacija o prikazovanju bolnišnic v bljižini lahko preberete na strani bljižnjih bolnišnic (<img src="knjiznice/slike/informacijeBolnice.png" style="height:23px; width: auto; display:inline-flex;"/>).
+              <br>Želim vam uspešno ter pa uporabno izkušnjo pri delu z aplikacijo VYRSUS,<br><img src="knjiznice/slike/samoBrezPanike.png" style="height:27px; width: auto; display:inline-flex;"/><strong style="font-size: 1.2em;"> SAMO BREZ PANIKE!</strong></div>
+          <div class="col-lg-1 col-md-1 col-sm-1"></div>
+      </div>
+    <div id="zacetnaGumba" class="row text-center" style="margin-bottom: 1.5em;">
+        <div class="col-lg-2 col-md-2 col-sm-2"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4" id="uporabnikGumb"><button type="button" class="btn btn-light" style="background-color: white;"><span class="lead">Uporabnik</span><img src="knjiznice/slike/uporabnik.svg" style="margin-left: 0.5em; height:4em; width: auto;"/></button></div>
+        <div class="col-lg-4 col-md-4 col-sm-4" id="testGumb"><button type="button" class="btn btn-light" style="background-color: white;"><span class="lead">Testni primeri</span><img src="knjiznice/slike/testniUporabnik.png" style="margin-left: 0.5em; height:4em; width: auto;"/></button></div>
+        <div class="col-lg-2 col-md-2 col-sm-2"></div>
+    </div>
+    <div id="novObstojeciUporabnik" class="row text-center" style="display: none; margin-bottom: 1.5em;">
+        <div class="col-lg-1 col-md-1 col-sm-1"><button style="background: white; border: 0px solid white" onclick="document.getElementById('novObstojeciUporabnik').style.display='none'; document.getElementById('navodilaZaUporabo').style.display=''; document.getElementById('zacetnaGumba').style.display=''; document.getElementById('statistika').style.display='';"><img src="knjiznice/slike/backButton.png" style="height:33px; width: auto; display:inline-flex;"/></button></div>
+        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4" id="novUporabnik"><button type="button" class="btn btn-light" style="background-color: white;"><span class="lead">Nov uporabnik</span><img src="knjiznice/slike/novUporabnik.png" style="margin-left: 0.5em; height:4em; width: auto;"/></button></div>
+        <div class="col-lg-4 col-md-4 col-sm-4" id="obstojeciUporabnik"><button type="button" class="btn btn-light" style="background-color: white;"><span class="lead">Obstoječi uporabnik</span><img src="knjiznice/slike/obstojeciUporabnik.png" style="margin-left: 0.5em; height:4em; width: auto;"/></button></div>
+        <div class="col-lg-2 col-md-2 col-sm-2"></div>
+    </div>
+    <div id="izberiteSiTestnegaUporabnika" class="row" style="display: none; margin-bottom: 1.1em;"><div class="col-lg-1 col-md-1 col-sm-1"><button style="background: white; border: 0px solid white" onclick="document.getElementById('testniUporabnik').style.display='none'; document.getElementById('izberiteSiTestnegaUporabnika').style.display='none'; document.getElementById('navodilaZaUporabo').style.display=''; document.getElementById('zacetnaGumba').style.display=''; document.getElementById('statistika').style.display='';"><img src="knjiznice/slike/backButton.png" style="height:33px; width: auto; display:inline-flex;"/></button></div><div class="col-lg-11 col-md-11 col-sm-11 lead text-center" style="opacity: 0.8">Izberite si testnega uporabnika
+    <img src="knjiznice/slike/klikNaZemljevid.svg" style="opacity: 1; height:27px; width: auto; display:inline-flex;"/></div></div>
+    <div class="row" id="skupinaGumbovZaIzbiroTesta" style="display: none;"><div class="col-lg-12 col-md-12 col-sm-12 lead text-center">
+        <button id="skupinaGumbovZaIzbiroTestaArthurDent" type="button" class="btn btn-secondary" style="border: 0px solid black; background-color: white;" onclick="prikazPodatkovArthurDent(); document.getElementById('fordPerfectPolje').style.display = 'none'; document.getElementById('zaphodBeebleroxPolje').style.display = 'none'; document.getElementById('skupinaGumbovZaIzbiroTestaArthurDent').disabled=true; document.getElementById('skupinaGumbovZaIzbiroTestaFordPerfect').disabled=false; document.getElementById('skupinaGumbovZaIzbiroTestaZahpodBeeblerox').disabled=false;"><img src="knjiznice/slike/ArthurDent.png" style="height:2.5em; margin-right: 5px; margin-left: 5px; width: auto; display:inline-flex;"/></button>
+        <button id="skupinaGumbovZaIzbiroTestaFordPerfect" type="button" class="btn btn-secondary" style="border: 0px solid black; background-color: white;" onclick="prikazPodatkovFordPerfect(); document.getElementById('arthurDentPolje').style.display = 'none'; document.getElementById('zaphodBeebleroxPolje').style.display = 'none'; document.getElementById('skupinaGumbovZaIzbiroTestaArthurDent').disabled=false; document.getElementById('skupinaGumbovZaIzbiroTestaFordPerfect').disabled=true; document.getElementById('skupinaGumbovZaIzbiroTestaZahpodBeeblerox').disabled=false;"><img src="knjiznice/slike/FordPerfect.svg" style="height:2.5em; margin-right: 5px; margin-left: 5px; width: auto; display:inline-flex;"/></button>
+        <button id="skupinaGumbovZaIzbiroTestaZahpodBeeblerox" type="button" class="btn btn-secondary" style="border: 0px solid black; background-color: white;" onclick="prikazPodatkovZaphodBeeblerox(); document.getElementById('arthurDentPolje').style.display = 'none'; document.getElementById('fordPerfectPolje').style.display = 'none'; document.getElementById('skupinaGumbovZaIzbiroTestaArthurDent').disabled=false; document.getElementById('skupinaGumbovZaIzbiroTestaFordPerfect').disabled=false; document.getElementById('skupinaGumbovZaIzbiroTestaZahpodBeeblerox').disabled=true;"><img src="knjiznice/slike/ZaphodBeeblebrox.png" style="height:2.5em; margin-right: 5px; margin-left: 5px; width: auto; display:inline-flex;"/></button>
+    </div></div>
+    <div id="testniUporabnik" class="row" style="display: none; margin-bottom: 1.5em;">
+        <div class="col-lg-2 col-md-2 col-sm-2"></div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <button id="arthurDentGumb" style="border: 0px solid white; background-color: white;"><div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="./knjiznice/slike/ArthurDent.png" style="width: 12em; height: auto; margin-bottom: 0.5em;" alt="Arthur Dent">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 1.5em;">Arthur Dent</h5>
+                    <p class="card-text">Sem Arthur Dent <img src="knjiznice/slike/spolMoski.svg" style="height:17px; width: auto; display:inline-flex;"/>, rojen 24.12.1972 in imam zelo nizko verjetnost okužbe <img src="knjiznice/slike/zelenaIkona.png" style="height:17px; width: auto; display:inline-flex;"/> z virusom COVID-19. Prosti čas rad preživljam v naravi, v času izolacije pa se zaradi svoje varnosti in varnosti drugih raje izogibam galaktični družbi.</p>
+              </div>
+          </div></button>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <button id="fordPerfectGumb" style="border: 0px solid black; background-color: white;"><div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="./knjiznice/slike/FordPerfect.svg" style="width: 12em; height: auto; margin-bottom: 0.5em;" alt="Ford Prefect">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 1.5em;">Ford Prefect</h5>
+                    <p class="card-text">Sem  Ford Prefect <img src="knjiznice/slike/spolZenski.svg" style="height:17px; width: auto; display:inline-flex;"/>, rojena 14.3.2000 in imam srednjo verjetnost okužbe <img src="knjiznice/slike/rumenaIkona.png" style="height:17px; width: auto; display:inline-flex;"/> z virusom COVID-19. Večino prostega ćasa preživim za knjigami, ko pa je le mogoče pa se družim s svojimi galaktičnimi prijatelji.</p>
+              </div>
+            </div></button>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <button id="zaphodBeeblebroxGumb" style="border: 0px solid white; background-color: white;"><div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="./knjiznice/slike/ZaphodBeeblebrox.png" style="width: 12em; height: auto; margin-bottom: 0.5em;" alt="Zaphod Beeblebrox">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 1.4725em;">Zaphod Beeblebrox</h5>
+                    <p class="card-text">Sem Zahpod Beeblebrox <img src="knjiznice/slike/spolOstalo.svg" style="height:17px; width: auto; display:inline-flex;"/>, ustvajen 9.5.1949 in imam visoko verjetnost okužbe <img src="knjiznice/slike/rdecaIkona.png" style="height:17px; width: auto; display:inline-flex;"/> z virusom COVID-19. Zaradi svoje starosti, imam že kar nekaj zdravstvenih težav, prav tako pa sem zaradi humanitarne želje dnevno v stiku z veliko galaktičnimi stvori.</p>
+              </div>
+          </div></button>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+    </div>
+    <div id="arthurDentPolje" class="row" style="display: none;">
+        <div class="row">
+        <div  class="col-lg-1 col-md-1 col-sm-1"></div>
+        <div class="col-lg-10 col-md-10 col-sm-10 text-center">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h5 class="panel-title"><img src="knjiznice/slike/ArthurDent.png" style="height:1.5em; margin-right: 5px; width: auto; display:inline-flex;"/><strong>Arthur Dent<strong></h5>
+            </div>
+            <div class="panel-body">
+                <p class="lead" style="font-size: 1.25em;">Sem Arthur Dent <img src="knjiznice/slike/spolMoski.svg" style="height:17px; width: auto; display:inline-flex;"/>, rojen 24.12.1972 in imam zelo nizko verjetnost okužbe <img src="knjiznice/slike/zelenaIkona.png" style="height:17px; width: auto; display:inline-flex;"/> z virusom COVID-19. Prosti čas rad preživljam v naravi, v času izolacije pa se zaradi svoje varnosti in varnosti drugih raje izogibam galaktični družbi.</p>
+                <div class="panel-body">
+                    <div class="input-group"><input id="meritveVitalnihZnakovEHRidArthurDent" type="text" class="form-control input-mini" style="font-weight: normal;" placeholder="7328g916-2r54-4e08-eo6h-52f761a0b245" value="7328g916-2r54-4e08-eo6h-52f761a0b245" disabled><span class="input-group-addon">
+                        <img src="knjiznice/slike/pregledMeritev.svg" style="height: 1.4em; width: auto;"/></span></div>
+                    <div id="rezultatMeritveVitalnihZnakovArthurDent"></div>
+                    <div class="row text-center"><div class="col-lg-12 col-md-12 col-sm-12"><div><canvas id="grafPrikazPodatkovArthurDent" width="500" height="250" style="display: none;"></canvas></div></div></div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+     <div  class="col-lg-1 col-md-1 col-sm-1"></div></div>
+    <div id="fordPerfectPolje" class="row" style="display:none;">
+        <div class="row">
+        <div  class="col-lg-1 col-md-1 col-sm-1"></div>
+        <div class="col-lg-10 col-md-10 col-sm-10 text-center">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h5 class="panel-title"><img src="knjiznice/slike/FordPerfect.svg" style="height:1.5em; margin-right: 5px; width: auto; display:inline-flex;"/><strong>Ford Prefect</strong></h5>
+            </div>
+            <div class="panel-body">
+             <p class="lead" style="font-size: 1.25em;">Sem  Ford Prefect <img src="knjiznice/slike/spolZenski.svg" style="height:17px; width: auto; display:inline-flex;"/>, rojena 14.3.2000 in imam srednjo verjetnost okužbe <img src="knjiznice/slike/rumenaIkona.png" style="height:17px; width: auto; display:inline-flex;"/> z virusom COVID-19. Večino prostega ćasa preživim za knjigami, ko pa je le mogoče pa se družim s svojimi galaktičnimi prijatelji.</p>
+             <div class="panel-body">
+                 <div class="input-group"><input id="meritveVitalnihZnakovEHRidFordPerfect" type="text" class="form-control input-mini" style="font-weight: normal;" placeholder="afb58a32-e96b-4a34-8a53-79bf8640b514" value="afb58a32-e96b-4a34-8a53-79bf8640b514" disabled><span class="input-group-addon">
+                     <img src="knjiznice/slike/pregledMeritev.svg" style="height: 1.4em; width: auto;"/></span></div>
+                 <div id="rezultatMeritveVitalnihZnakovFordPerfect"></div>
+                 <div class="row text-center"><div class="col-lg-12 col-md-12 col-sm-12"><div><canvas id="grafPrikazPodatkovFordPerfect" width="500" height="250" style="display: none;"></canvas></div></div></div>
+             </div>
+            </div>
+          </div>
+      </div>
+      <div  class="col-lg-1 col-md-1 col-sm-1"></div></div>
+    </div>
+    <div id="zaphodBeebleroxPolje" class="row" style="display: none;">
+        <div class="row">
+        <div  class="col-lg-1 col-md-1 col-sm-1"></div>
+        <div class="col-lg-10 col-md-10 col-sm-10 text-center">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h5 class="panel-title"><img src="knjiznice/slike/ZaphodBeeblebrox.png" style="height:1.5em; margin-right: 5px; width: auto; display:inline-flex;"/><strong>Zaphod Beeblebrox</strong></h5>
+            </div>
+            <div class="panel-body">
+              <p class="lead" style="font-size: 1.25em;">Sem Zahpod Beeblebrox <img src="knjiznice/slike/spolOstalo.svg" style="height:17px; width: auto; display:inline-flex;"/>, ustvajen 9.5.1949 in imam visoko verjetnost okužbe <img src="knjiznice/slike/rdecaIkona.png" style="height:17px; width: auto; display:inline-flex;"/> z virusom COVID-19. Zaradi svoje starosti, imam že kar nekaj zdravstvenih težav, prav tako pa sem zaradi humanitarne želje dnevno v stiku z veliko galaktičnimi stvori.</p>
+              <div class="panel-body">
+                  <div class="input-group"><input id="meritveVitalnihZnakovEHRidZaphodBeeblerox" type="text" class="form-control input-mini" style="font-weight: normal;" placeholder="74dada5a-9d3a-4938-b255-d533160d0549" value="74dada5a-9d3a-4938-b255-d533160d0549" disabled><span class="input-group-addon">
+                      <img src="knjiznice/slike/pregledMeritev.svg" style="height: 1.4em; width: auto;"/></span></div>
+                  <div id="rezultatMeritveVitalnihZnakovZaphodBeeblerox"></div>
+                  <div class="row text-center"><div class="col-lg-12 col-md-12 col-sm-12"><div><canvas id="grafPrikazPodatkovZaphodBeeblebrox" width="500" height="250" style="display: none;"></canvas></div></div></div>
+              </div>
+            </div>
+            </div>
+          </div>
+      <div  class="col-lg-1 col-md-1 col-sm-1"></div></div>
+    </div>
+    <div id="kreiranjeEHR" class="row" style="font-weight: normal; display: none;">
+        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        <div class="col-lg-10 col-md-10 col-sm-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12"><img src="knjiznice/slike/kreirajEHR.svg" style="margin-right: 0.5em; height:23px; width: auto;"/><span class="lead" style="font-size: 1.3em;">Kreiranje novega EHR zapisa<span></div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<span class="label label-default">Ime</span><input id="kreirajIme" type="text" class="form-control input-mini" placeholder="Arthur">
+						<span class="label label-default">Priimek</span><input id="kreirajPriimek" type="text" class="form-control" placeholder="Dent">
+                        <span class="label label-default">Spol</span>
+                        <span class="form-control text-center" id="kreirajSpol">
+                            <span class="col-lg-4 col-md-4 col-sm-4">
+                                <input type="radio" id="moskiSpol" name="spol" class="custom-control-input" value="moskiSpol">
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="moskiSpol"><span class="lead" style="font-size: 1.2em;">Moški  </span><img src="knjiznice/slike/spolMoski.svg" style="height:20px; width: auto;"/></label>
+                            </span>
+                            <span class="col-lg-4 col-md-4 col-sm-4">
+                                <input type="radio" id="zenskiSpol" name="spol" class="custom-control-input" value="zenskiSpol">
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="zenskiSpol"><span class="lead" style="font-size: 1.2em;">Ženski </span><img src="knjiznice/slike/spolZenski.svg" style="height:20px; width: auto;"/></label>
+                            </span>
+                            <span class="col-lg-4 col-md-4 col-sm-4">
+                                <input type="radio" id="ostalo" name="spol" class="custom-control-input" value="ostalo" checked>
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="ostalo"><span class="lead" style="font-size: 1.2em;">Ostalo  </span><img src="knjiznice/slike/spolOstalo.svg" style="height:23px; width: auto;"/></label>
+                            </span>
+                        </span>
+						<span class="label label-default">Datum rojstva</span><input id="kreirajDatumRojstva" type="text" class="form-control" placeholder="1972-12-24">
+						<button type="button" class="btn btn-danger btn-xs btn-block" style="margin-top: 0.7em;" onclick="kreirajEHRzaBolnika()"><span class="lead" style="font-size: 1.3em;">Dodaj osnovne podatke o uporabniku</span></button>
+                        <span class="lead text-center" style="font-weight: lighter; font-size: 1.3em; margin-top: 0.5em;" id="kreirajSporocilo"></span>
+				  	</div>
+				</div>
+			</div>
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        </div>
+        <div id="branjeEHR" class="row" style="font-weight: normal; display: none;">
+        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-10 col-md-10 col-sm-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8"><img src="knjiznice/slike/preberiEHR.png" style="margin-right: 0.5em; height:23px; width: auto;"/><span class="lead" style="font-size: 1.3em;">Branje EHR zapisa<span></div>
+							<div class="col-lg-4 col-md-4 col-sm-4"><div id="mnozicaUporabnikov"></div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<span class="label label-default">EHR ID</span><input id="preberiEHRid" type="text" class="form-control input-mini" placeholder="7328g916-2r54-4e08-eo6h-52f761a0b245">
+						<button type="button" class="btn btn-success btn-xs btn-block" style="margin-top: 0.7em;" onclick="preberiEHRodBolnika()"><span class="lead" style="font-size: 1.3em;">Preberi EHR ID uporabnika</span></button>
+                        <span class="lead" style="font-size: 1.3em; margin-top: 0.5em;" id="preberiSporocilo"></span>
+				  	</div>
+				</div>
+			</div>
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        </div>
+        <div id="vnostMeritev" class="row" style="font-weight: normal; display: none;">
+        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-10 col-md-10 col-sm-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12"><img src="knjiznice/slike/vnosVitalnihZnakov.svg" style="margin-right: 0.5em; height:23px; width: auto;"/><span class="lead" style="font-size: 1.3em;">Vnos meritve vitalnih znakov<span></div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<span class="label label-default">EHR ID</span><input id="dodajVitalnoEHR" type="text" class="form-control input-mini" placeholder="7328g916-2r54-4e08-eo6h-52f761a0b245">
+						<span class="label label-default">Datum in ura</span><div class="input-group"><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2020-03-14T11:23Z"><span class="input-group-addon"><button style="border: 0px solid black;" onclick="prikazDatumaInCasa()">
+                            <img src="knjiznice/slike/ura.png" style="height: 1.4em; width: auto;"/></button></span></div>
+						<span class="label label-default">Telesna višina</span><div class="input-group"><input id="dodajVitalnoTelesnaVisina" type="text" class="form-control input-mini" placeholder="183.86"><span class="input-group-addon">cm</span></div>
+						<span class="label label-default">Telesna teža</span><div class="input-group"><input id="dodajVitalnoTelesnaTeza" type="text" class="form-control input-mini" placeholder="87.52"><span class="input-group-addon">kg</span></div>
+						<span class="label label-default">Telesna temperatura</span><div class="input-group"><input id="dodajVitalnoTelesnaTemperatura" type="text" class="form-control input-mini" placeholder="36.81"><span class="input-group-addon">°C</span></div>
+                        <span class="label label-default">Občutek glavobola</span>
+                        <span class="form-control text-center">
+                            <span class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="radio" id="glavobolDa" name="glavobol" class="custom-control-input" value=1>
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="glavobolDa"><span class="lead" style="font-size: 1.2em;">DA  </span><img src="knjiznice/slike/odgovorDa.png" style="height:20px; width: auto;"/></label>
+                            </span>
+                            <span class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="radio" id="glavobolNe" name="glavobol" class="custom-control-input" value=0>
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="glavobolNe"><span class="lead" style="font-size: 1.2em;">NE </span><img src="knjiznice/slike/odgovorNe.png" style="height:20px; width: auto;"/></label>
+                            </span>
+                        </span>
+                        <span class="label label-default">Občutek vročine</span>
+                        <span class="form-control text-center">
+                            <span class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="radio" id="obcutekVrocineDa" name="obcutekVrocine" class="custom-control-input" value=1>
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="obcutekVrocineDa"><span class="lead" style="font-size: 1.2em;">DA  </span><img src="knjiznice/slike/odgovorDa.png" style="height:20px; width: auto;"/></label>
+                            </span>
+                            <span class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="radio" id="obcutekVrocineNe" name="obcutekVrocine" class="custom-control-input" value=0>
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="obcutekVrocineNe"><span class="lead" style="font-size: 1.2em;">NE </span><img src="knjiznice/slike/odgovorNe.png" style="height:20px; width: auto;"/></label>
+                            </span>
+                        </span>
+                        <span class="label label-default">Težave z dihanjem</span>
+                        <span class="form-control text-center">
+                            <span class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="radio" id="tezaveZDihanjemDa" name="tezaveZDihanjem" class="custom-control-input" value=1>
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="tezaveZDihanjemDa"><span class="lead" style="font-size: 1.2em;">DA  </span><img src="knjiznice/slike/odgovorDa.png" style="height:20px; width: auto;"/></label>
+                            </span>
+                            <span class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="radio" id="tezaveZDihanjemNe" name="tezaveZDihanjem" class="custom-control-input" value=0>
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="tezaveZDihanjemNe"><span class="lead" style="font-size: 1.2em;">NE </span><img src="knjiznice/slike/odgovorNe.png" style="height:20px; width: auto;"/></label>
+                            </span>
+                        </span>
+                        <span class="label label-default">Nasičenost krvi s kisikom</span><div class="input-group"><input id="dodajVitalnoNasicenostKrviSKisikom" type="text" class="form-control input-mini" placeholder="98"><span class="input-group-addon">%</span></div>
+                        <span class="label label-default">Izpostavljenost COVID-19</span>
+                        <span class="form-control text-center">
+                            <span class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="radio" id="izpostavljenostVirusuDa" name="izpostavljenostVirusu" class="custom-control-input" value=1>
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="izpostavljenostVirusuDa"><span class="lead" style="font-size: 1.2em;">DA  </span><img src="knjiznice/slike/odgovorDa.png" style="height:20px; width: auto;"/></label>
+                            </span>
+                            <span class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="radio" id="izpostavljenostVirusuNe" name="izpostavljenostVirusu" class="custom-control-input" value=0>
+                                <label class="custom-control-label" style="font-weight: lighter; font-size: 0.9em;" for="izpostavljenostVirusuNe"><span class="lead" style="font-size: 1.2em;">NE </span><img src="knjiznice/slike/odgovorNe.png" style="height:20px; width: auto;"/></label>
+                            </span>
+                        </span>
+                        <button type="button" class="btn btn-warning btn-xs btn-block" style="margin-top: 0.7em;" onclick="dodajMeritveVitalnihZnakov()"><span class="lead" style="font-size: 1.3em;">Dodaj meritve vitalnih znakov</span></button>
+                        <span class="lead" style="font-size: 1.3em; margin-top: 0.5em;" id="dodajMeritveVitalnihZnakovSporocilo"></span>
+                        <div id="verjetnostOkuzbePoljeZelena" class="input-group" style="display: none; margin-top: 1em;"><span class="form-control input-mini"><img src="knjiznice/slike/zelenaIkona.png" style="margin-right: 10px; height:23px; width: auto;"/>Verjetnost okužbe: <span id="verjetnostOkuzbeVnesenihMeritevZelena" style="font-weight: bold;"></span></span><span class="input-group-addon danger">%</span></div>
+                        <div id="verjetnostOkuzbePoljeRumena" class="input-group" style="display: none; margin-top: 1em;"><span class="form-control input-mini"><img src="knjiznice/slike/rumenaIkona.png" style="margin-right: 10px; height:23px; width: auto;"/>Verjetnost okužbe: <span id="verjetnostOkuzbeVnesenihMeritevRumena" style="font-weight: bold;"></span></span><span class="input-group-addon danger">%</span></div>
+                        <div id="verjetnostOkuzbePoljeRdeca" class="input-group" style="display: none; margin-top: 1em;"><span class="form-control input-mini"><img src="knjiznice/slike/rdecaIkona.png" style="margin-right: 10px; height:23px; width: auto;"/>Verjetnost okužbe: <span id="verjetnostOkuzbeVnesenihMeritevRdeca" style="font-weight: bold;"></span></span><span class="input-group-addon danger">%</span></div>
+                    </div>
+				</div>
+			</div>
+        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        </div>
+        <div id="pregledMeritev" class="row" style="font-weight: normal; display: none;">
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-10 col-md-10 col-sm-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12"><img src="knjiznice/slike/pregledMeritev.svg" style="margin-right: 0.5em; height:23px; width: auto;"/><span class="lead" style="font-size: 1.3em;">Pregled verjetnosti okužbe<span></div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<span class="label label-default">EHR ID</span><input id="meritveVitalnihZnakovEHRid" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
+                        <button type="button" class="btn btn-info btn-xs btn-block" style="margin-top: 0.7em;" onclick="preberiMeritveVitalnihZnakov()"><span class="lead" style="font-size: 1.3em;">Preberi verjetnosti okužb</span></button>
+                        <span class="lead" style="font-size: 1.3em; margin-top: 0.5em;" id="preberiMeritveVitalnihZnakovSporocilo"></span>
+						<div id="rezultatMeritveVitalnihZnakov"></div>
+				  	</div>
+				</div>
+			</div>
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+		</div>
+        <div id="prikazPodatkov" class="row" style="font-weight: normal; display: none;">
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-10 col-md-10 col-sm-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12"><img src="knjiznice/slike/prikazPodatkov.png" style="margin-right: 0.5em; height:23px; width: auto;"/><span class="lead" style="font-size: 1.3em;">Prikaz podatkov<span></div>
+						</div>
+					</div>
+                    <div class="row text-center">
+                        <div class="col-lg-12 col-md-12 col-sm-12"><div><canvas id="grafPrikazPodatkov" width="500" height="250"></canvas></div></div>
+                    </div>
+				</div>
+			</div>
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+		</div>
+        <div id="gumbaZaIzbiroKreiranjaAliBranja" class="row text-center" style="display: none; margin-bottom: 1.5em;">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4"><button id="vnosMeritevGumb" type="button" class="btn btn-light" style="background-color: white;"><span class="lead">Vnos meritev</span><img src="knjiznice/slike/vnosVitalnihZnakov.svg" style="margin-left: 0.5em; height:4em; width: auto;"/></button></div>
+            <div class="col-lg-4 col-md-4 col-sm-4"><button id="pregledMeritevGumb" type="button" class="btn btn-light" style="background-color: white;"><span class="lead">Pregled meritev</span><img src="knjiznice/slike/pregledMeritev.svg" style="margin-left: 0.5em; height:4em; width: auto;"/></button></div>
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+        </div>
+        <div id="statistika" class="row text-center" style="font-weight: normal; margin-top: 3em; margin-bottom: 0em;">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="./knjiznice/slike/opravljeniTesti.png" class="card-img-top" style="margin-top: 1.5em; margin-bottom: 0.5em; height:7em; width: auto; display:inline-flex;" alt="Opravljeni testi">
+                    <div class="card-body"  style="margin-top: 1.5em;">
+                        <h5 class="card-title" style="font-size: 1.3em;">Izvedeni testi</h5>
+                        <p class="card-text lead"><strong style="opacity: 0.95;"><span id="steviloIzvedenihTestov"><strong></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="./knjiznice/slike/potrjenoOkuzeni.png" class="card-img-top" style="height:9.5em; width: auto; display:inline-flex;" alt="Potrjeno okuzeni">
+                    <div class="card-body"  style="margin-top: 1em;">
+                        <h5 class="card-title" style="font-size: 1.3em;">Potrjeno okuženi</h5>
+                        <p class="card-text lead"><strong style="opacity: 0.95;"><span id="steviloPotrjenihOkuzb"></span></strong><span id="steviloPotrjenihOkuzbDanes" style="font-size: 0.75em; margin-left: 0.5em;"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="./knjiznice/slike/preboleli.png" class="card-img-top" style="height:9em; width: auto; display:inline-flex;" alt="Preboleli">
+                    <div class="card-body" style="margin-top: 1.5em;">
+                        <h5 class="card-title" style="font-size: 1.3em;">Preboleli</h5>
+                        <p class="card-text lead"><strong style="opacity: 0.95;"><span id="steviloPrebolelih"></strong></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="./knjiznice/slike/umrli.png" class="card-img-top" style="height:8em; margin-top: 1em; width: auto; display:inline-flex;" alt="Umrli">
+                    <div class="card-body"  style="margin-top: 1.5em;">
+                        <h5 class="card-title" style="font-size: 1.3em;">Umrli</h5>
+                        <p class="card-text lead"><strong style="opacity: 0.95;"><span id="steviloUmrlih"></span></strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="row"><div class="col-lg-12 col-md-12 col-lg-12 text-center lead" style="font-size: 1.1em; color: grey; margin-top: 0em;"><span id="casPosodobitvePodatkov"></span></div></div>
+        </div>
+  </div>
+  <!-- KONEC: Vsebina aplikacije -->
+
+  <!-- AVTORSKE PRAVICE, TO JE ŠALA (HEC) -->
+  <div style=" font-weight: normal; opacity: 0.5; color: black; position: fixed; bottom: 0; right:0;">
+      &#169; mokot international
+  </div>
+
+</body>
+</html>

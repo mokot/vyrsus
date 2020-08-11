@@ -1,0 +1,119 @@
+/* Slika za prikaz uporabnikove lokacije na zemljevidu */
+#osebaZemljevid img {
+    height: 42px;
+    width: auto;
+    margin-bottom: 2px;
+}
+
+#osebaZemljevid img:hover {
+    height: 44px;
+    width: auto;
+    margin-bottom: 0px;
+}
+
+#osebaZemljevid img:active {
+    height: 42px;
+    width: auto;
+    opacity: 75%;
+    margin-bottom: 2px;
+}
+
+#osebaZemljevid:hover {
+    font-size: 1.0em;
+    opacity: 95%;
+    margin-bottom: 0px;
+}
+
+#osebaZemljevid:active {
+    font-size: 1.0em;
+    opacity: 95%;
+    margin-bottom: 0px;
+}
+
+/* Slika za submit zemljevid */
+#submitZemljevid img {
+    margin-top: 0.4em;
+    padding-top: 7px;
+    height: 42px;
+    width: auto;
+    margin-bottom: 7px;
+    padding-top: 0.02em;
+    margin-right: 7px;
+}
+
+#submitZemljevid {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+}
+
+#submitZemljevid img:hover {
+    height: 44px;
+    width: auto;
+    opacity: 80%;
+    margin-bottom: 0px;
+    margin-right: 5px;
+}
+
+#submitZemljevid img:active {
+    height: 42px;
+    width: auto;
+    opacity: 65%;
+    margin-bottom: 2px;
+    margin-right: 7px;
+}
+
+/* Slika za praznjenje zemljevida */
+#pocistiZemljevid img {
+    margin-top: 0.4em;
+    height: 50px;
+    width: auto;
+    margin-bottom: 2px;
+}
+
+#pocistiZemljevid {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    left: 10%;
+}
+
+#pocistiZemljevid img:hover {
+    height: 52px;
+    width: auto;
+    opacity: 80%;
+    margin-bottom: 0px;
+}
+
+#pocistiZemljevid img:active {
+    margin-top: 0.4em;
+    height: 50px;
+    width: auto;
+    margin-bottom: 2px;
+}
+
+#informacijeBolnisnice {
+    height: 40px;
+    width: auto;
+    margin-bottom: 2px;
+}
+
+#informacijeBolnisnice:hover {
+    height: 42px;
+    width: auto;
+    opacity: 80%;
+    margin-bottom: 0px;
+}
+
+#informacijeBolnisnice:active {
+    height: 40px;
+    width: auto;
+    margin-bottom: 2px;
+    opacity: 95%;
+}
+
+.input-group-addon.danger {
+    color: rgb(255, 255, 255);
+    background-color: rgb(217, 83, 79);
+    border-color: rgb(212, 63, 58);
+}

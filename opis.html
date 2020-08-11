@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>VYRSUS</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <link href="knjiznice/css/style.css" rel="stylesheet">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    body {padding-top: 70px;}
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="navigationBar">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html"><img src="knjiznice/slike/virus.png" style="height:27px; width: auto; display:inline-flex;"/>VYRSUS</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+          <li><a href="bolnisnice.html">Bližnje bolnišnice</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Opis delovanja aplikacije -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Opis ideje, ki jo aplikacija podpira</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
+            <p> Spletna aplikacija <strong>VYRSUS</strong> (versus virus) je namenjena vsem uporabnikom, ki želijo preprečiti kakršnokoli morebitno širjenje virusa COVID-19.<hr></p><!-- 14 -->
+            <p>Aplikacija omogoča vnašanje vitalnih znakov uporabnika in s pomočjo preprostega algoritma izračuna, kolikšna je verjetnost, da je uporabnik na podlagi vnešenih podatkov okužen z virusom. Na podlagi verjetnosti okužbe nato aplikacija sama uporabnika razvrsti v eno
+                izmed treh skupin. Za vsako skupino je priporočeno, kaj lahko oziroma ne sme početi. Prva skupina ima povprečno verjetnost okužbe nižjo od 50 % in posledično tudi ni (toliko) nevarna za družbo, druga skupina ima povprečno verjetnost okužbe višjo od 50 % ter nižjo od 80 %, torej je
+                zanjo priporočeno izogibanje nepotrebnih druženj. Zadnja skupina ima povprečno verjetnost okužbe višjo od 80 % in je posledično lahko tudi nevarna za družbo, zato aplikacija osebam v tej skupini svetuje, naj se zadržujejo doma in najavljeno obiščejo zdravnika.</p>
+            <p> Aplikacija je namenjena ljudem, ki želijo spremljati svojo verjetnost okuženosti in posledično preprečiti nadaljnje širjenje virusa COVID-19. </p>
+            <!-- KONEC: Opis ideje, ki jo aplikacija podpira -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljeni zunanji viri podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            <p>Zunanji vir, ki ga aplikacija uporablja, je spletna stran <a href="https://covid-19.sledilnik.org" target="_blank">COVID-19 Sledilnik</a>. <hr>Spletna aplikacija VYRSUS vir  uporablja preko neposrednega API klica, katerega namen je pirkaz statističnih podatkov
+                za Slovenijo. Podatki, ki jih prikazuje, so število opravljenih testov, število pozitivno potrjenih testov (število okuženih ljudi), število prebivalcev, ki je virus "prebolelo", ter število ljudi, katerih življenje se je zaradi virusa žal predčasno končalo. </p>
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Master/detail načrtovalski vzorec</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
+            <p>Master/detail načrtovalski vzorec je med drugim uporabljen tudi pri prikazu meritev testnih oseb. Pri izbiri ene izmed testnih oseb (izbiro uporabnik potrdi s klikom) se vnešeni podatki te osebe prikažejo spodaj, prav tako se izračuna povprečna verjetnost
+                okužbe ter prigaže graf, ki prikazuje nihanje verjetnosti okužbe v odvisnosti od meritve.</p>
+            <!-- KONEC: Master/detail načrtovalski vzorec -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljena tehnika za vizualizacijo podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            <p>Tehnika uporabljena za vizualizacijo podatkov je <a href="https://www.chartjs.org/" target="_blank">Chart.js</a>.<hr></p>
+            <p>Natančneje, aplikacija uporablja črtni grafikon (line chart) z dvema krivulijama. Ena krivulja prikazuje nihanje verjetnosti okužbe uporabnika v odvisnosti od meritve, druga krivulija pa je pravzaprav premica, ki prikazuje povprečje verjetnosti okužb. S to tehniko vizualizacije podatkov je nazorno prikazano
+                nihanje verjetnosti okužbe glede na meritve.</p>
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- KONEC: Opis delovanja aplikacije -->
+
+  <!-- AVTORSKE PRAVICE, TO JE ŠALA (HEC) -->
+  <div style="opacity: 0.5; color: black; position: fixed; bottom: 0; right:0;">
+      &#169; mokot international
+  </div>
+
+</body>
+</html>

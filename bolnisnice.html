@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>VYRSUS</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <link href="knjiznice/css/leaflet.css" rel="stylesheet">
+  <link href="knjiznice/css/leaflet-routing-machine.css" rel="stylesheet">
+  <link href="knjiznice/css/style.css" rel="stylesheet">
+  <style>
+    body {padding-top: 70px;}
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/leaflet.js"></script>
+  <script src="knjiznice/js/leaflet-routing-machine.js"></script>
+  <script src="knjiznice/js/distance-util.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="navigationBar">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html"><img src="knjiznice/slike/virus.png" style="height:27px; width: auto; display:inline-flex;"/>VYRSUS</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+          <li><a href="bolnisnice.html">Bližnje bolnišnice</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Prikaz bližnjih bolnišnic -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4"></div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+        <p class="lead">BOLNIŠNICE V BLIŽINI</p>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 text-center">
+          <span data-toggle="tooltip" data-placement="top" title="Dodatne informacije">
+          <img id="informacijeBolnisnice" type="button" data-toggle="modal" data-target="#staticBackdrop" src="knjiznice/slike/informacijeBolnice.png" onclick="funkcja, ki prikaze okno z info" alt="Informacije"/>
+      </span>
+
+      <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span class="col-lg-1 col-md-1 col-sm-1"><img src="knjiznice/slike/dodatneInformacije.png" style="height:27px; width: auto; display:inline-flex;"/></span>
+                <span class="modal-title col-lg-10 col-md-10 col-sm-10 lead" stye="font-size: 0.9em" id="staticBackdropLabel">Dodatne informacije</span>
+                <button type="button" class="close col-lg-1 col-md-1 col-sm-1" data-dismiss="modal" aria-label="Close" style="margin-top: 0.17em">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body lead" style="font-size: 1em;">
+                Aplikacija "versus virus" oziroma <img src="knjiznice/slike/virus.png" style="height:20px; width: auto; display:inline-flex;"/> VYRSUS omogoča razlikovanje med urgentnimi bolnišnicami, bolnišnicami oddaljenimi za manj kot 25 km ter ostalimi bolnišnicami, ki se nahajajo v Sloveniji. <br><br>
+                Privzeta lokacija uporabnika ob nalaganju spletne strani je lokacija Fakultete za računalništvo in informatiko <img src="knjiznice/slike/fakulteta.svg" style="height:20px; width: auto; display:inline-flex;"/>. S klikom na ikono <img src="knjiznice/slike/osebaZemljevid.png" style="height:20px; width: auto; display:inline-flex;"/> aplikacija prikaže približek vaše lokacije na zemljevidu ter bolnice, ki se nahajajo v bližini.
+                VYRSUS prav tako omogoča izbiro poljubne lokacije ne zemljevidu <img src="knjiznice/slike/klikNaZemljevid.svg" style="height:20px; width: auto; display:inline-flex;"/> in prikaz vseh bolnišnic <br>znotraj radija 25 km, s središčem v izbrani točki uporabnika. <br>
+                Z izbiro <img src="knjiznice/slike/zelenaOznaka.png" style="height:20px; width: auto; display:inline-flex;"/>, <img src="knjiznice/slike/rumenaOznaka.png" style="height:20px; width: auto; display:inline-flex;"/> in privzeto izbiro <img src="knjiznice/slike/modraOznaka.png" style="height:20px; width: auto; display:inline-flex;"/>, lahko uporabnik sam določi, kater bolnišnice mu bo aplikacija obarvala. Svojo odločitev potrdi z gumbom submit
+                <img src="knjiznice/slike/submit.svg" style="height:20px; width: auto; display:inline-flex;"/>. Gumb <img src="knjiznice/slike/trash.svg" style="height:20px; width: auto; display:inline-flex;"/> omogča izbris vseh bolnišnic na zemljevidu. <br>
+                Modra oznaka <img src="knjiznice/slike/markerModer.png" style="height:20px; width: auto; display:inline-flex;"/> na zemljevidu predstavlja bolnice, ki so od izbrane lokacije uporabnika oddaljene za več kot 25 km, rumena oznaka <img src="knjiznice/slike/markerRumen.png" style="height:20px; width: auto; display:inline-flex;"/> predstavlja bolnice, ki niso urgentne, zelena oznaka <img src="knjiznice/slike/markerZelen.png" style="height:20px; width: auto; display:inline-flex;"/>
+                pa predstavlja urgentne bolnice znotraj radija. Posebni oznaki sta tudi rdeča <img src="knjiznice/slike/marker.png" style="height:20px; width: auto; display:inline-flex;"/>, ki predstavlja izbrano lokacijo uporabnika ter oranžna <img src="knjiznice/slike/markerOranzen.png" style="height:20px; width: auto; display:inline-flex;"/>, ki označuje bolnišnico, ki je najbližje izbrani lokaciji uporabnika. <br>
+                V območju <img src="knjiznice/slike/bolnica.png" style="height:20px; width: auto; display:inline-flex;"/> se nahajajo podatki bolnice, ki se nahaja najbližje uporabniku aplikacije.
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row justify-content-between">
+      <div class="col-lg-3 col-md-3 col-sm-3 lead">
+          <div id="zemljevid1" class="row justify-content-md-center" style="margin-top: 1.0em; margin-bottom: 1em;">
+              <div id="osebaZemljevid" class="col-lg-12 col-md-12 col-sm-12">
+                  <span>Lokacija: </span>
+                  <span data-toggle="tooltip" data-placement="top" title="Lokacija uporabnika">
+                  <img src="knjiznice/slike/osebaZemljevid.png" onclick="centerUporabnik()" alt="Oseba"/>
+                  </span>
+              </div>
+          </div>
+          <div id="zemljevid2" class="row justify-content-md-center" style="margin-top: 1em; margin-bottom: 2em;">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                  <p>Prikaži:</p>
+                  <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="urgentniCenter" id="urgentniCenter">
+                      <label class="form-check-label" for="urgentniCenter" style="font-weight: lighter; font-size: 0.9em">
+                          Urgentni center <img src="knjiznice/slike/zelenaOznaka.png" style="height:25px; width: auto;"/>
+                      </label>
+                  </div>
+                  <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="neurgentniCenter" id="neurgentniCenter">
+                      <label class="form-check-label" for="neurgentniCenter" style="font-weight: lighter; font-size: 0.9em">
+                          Center v bližini <img src="knjiznice/slike/rumenaOznaka.png" style="height:25px; width: auto;"/>
+                      </label>
+                  </div>
+                  <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="ostalo" id="ostalo" disabled>
+                      <label class="form-check-label" for="ostalo" style="font-weight: lighter; font-size: 0.9em">
+                          Ostalo <img src="knjiznice/slike/modraOznaka.png" style="height:25px; width: auto;"/>
+                      </label>
+                  </div>
+              <div id="zemljevid3" class="row justify-content-md-center">
+                  <div>
+                     <span data-toggle="tooltip" data-placement="top" title="Potrdi zahtevo">
+                     <span class="col-lg-2 col-md-2 col-sm-2" id="submitZemljevid"><img src="knjiznice/slike/submit.svg" onclick="prikaziVseBolnisnice()"/></span></span>
+                     <span data-toggle="tooltip" data-placement="top" title="Izbriši lokacije">
+                     <span class="col-lg-1 col-md-1 col-sm-1" id="pocistiZemljevid"><img src="knjiznice/slike/trash.svg" onclick="odstraniVseTockeNaZemljevidu()"/></span></span>
+                  </div>
+              </div>
+              </div>
+          </div>
+          <div id="izpisBolnisnice" class="row justify-content-md-center" style="margin-top: 0.5em;">
+              <!--
+              PRIMER IZPISA:
+              <p>Najbližja bolnišnica: </p>
+              Ime: ***
+              Naslov: ***
+              Telefonska Stevilka: ***
+              -->
+              <div class="row justify-content-md-center" style="margin-bottom: 0.5em;">
+                  <div class="col-lg-2 col-md-2 col-sm-2">
+                      <img src="./knjiznice/slike/bolnica.png" alt="Bolnica" style="width: 40px; height: auto;"/>
+                  </div>
+                  <div class="col-lg-10 col-md-10 col-sm-10" style="margin-top: 0.3em;">
+                      Najbližja bolnišnica
+                  </div>
+              </div>
+              <div class="row justify-content-md-center" style="margin-bottom: 0.3em; font-size: 0.9em; margin-right: 0.3em;">
+                  <div class="col-lg-4 col-md-4 col-sm-4" style="font-size: 0.9em">
+                      Ime:
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-sm-8" id="imeBolnisnice" style="font-size: 0.85em">
+                      ***
+                  </div>
+              </div>
+              <div class="row justify-content-md-center" style="margin-bottom: 0.3em; font-size: 0.9em; margin-right: 0.3em;">
+                  <div class="col-lg-4 col-md-4 col-sm-4" style="font-size: 0.9em">
+                      Naslov:
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-sm-8" id="naslovBolnisnice" style="font-size: 0.85em">
+                      ***
+                  </div>
+              </div>
+              <div class="row justify-content-md-center" style="margin-bottom: 0.3em; font-size: 0.9em; margin-right: 0.3em;">
+                  <div class="col-lg-4 col-md-4 col-sm-4" style="font-size: 0.9em">
+                      Tel:
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-sm-8" id="telefonBolnisnice" style="font-size: 0.85em">
+                      ***
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- ZEMLJEVID -->
+      <div id="map" class="col-lg-9 col-md-9 col-sm-9" style="height: 48em; border-radius: 1em;" alt="Zemljevid"></div>
+    </div>
+  </div>
+  <!-- KONEC: Prikaz bližnjih bolnišnic -->
+
+  <!-- AVTORSKE PRAVICE, TO JE ŠALA (HEC) -->
+  <div style="opacity: 0.5; color: black; position: fixed; bottom: 0; right:0;">
+      &#169; mokot international
+  </div>
+
+</body>
+</html>
